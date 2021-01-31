@@ -748,7 +748,7 @@ const app = (function() {
 					}
 				} else if (shield.type === "MN" && shield.bannerType === "Bus") {
 					shieldImgElmt.data = imgDir + "Minnesota-BUS.svg";
-				} else if (shield.type === "NB" && shield.bannerType === "Local" && shield.routeNumber.length <= 2) {
+				} else if (shield.type === "NB" && shield.bannerType === "Local" && shield.routeNumber.length >= 3) {
 					shieldImgElmt.data = imgDir + "NB-3-LOCAL.svg";
 				} else if (shield.type === "NE" && shield.bannerType === "Link" && shield.routeNumber.length <= 2) {
 					shieldImgElmt.data = imgDir + "Nebraska-LINK.svg";
