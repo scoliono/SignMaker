@@ -51,6 +51,7 @@ Shield.prototype.bannerTypes = [
 	"Future",
 	"Toll",
 	"City",
+	"Conn",
 	"To"
 ];
 Shield.prototype.bannerPositions = ["Above", "Right", "Left"];
@@ -85,6 +86,7 @@ Shield.prototype.types = {
 	"MO" : "MO",
 	"MT" : "MT",
 	"MT 2nd" : "MT2",
+	"NB" : "NB",
 	"NE" : "NE",
 	"NV" : "NV",
 	"NH" : "NH",
