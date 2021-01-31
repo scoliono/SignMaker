@@ -274,7 +274,17 @@
 .bannerShieldContainer.MT2.three .routeNumber {
 	font-family: "Series C";
 }
-
+.bannerShieldContainer.NB .routeNumber {
+	color: var(--black);
+	top: 0.15em;
+	font-family: "Series D";
+}
+.bannerShieldContainer.NB.three .routeNumber {
+	font-size: 0.8em;
+}
+.bannerShieldContainer.NB.local.three .banner {
+	display: none;
+}
 .bannerShieldContainer.NE .routeNumber {
 	color: var(--black);
 	top: 0.05em;
