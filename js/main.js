@@ -590,6 +590,12 @@ const app = (function() {
 					}
 				} else if (shield.type === "MT2") {
 					shieldImgElmt.data = imgDir + "Montana-2-Secondary.svg";
+				} else if (shield.type === "NB") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "NB-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "NB-3-CONN.svg";
+					}
 				} else if (shield.type === "NE") {
 					if (shield.routeNumber.length <= 2) {
 						shieldImgElmt.data = imgDir + "Nebraska-2.svg";
@@ -742,6 +748,8 @@ const app = (function() {
 					}
 				} else if (shield.type === "MN" && shield.bannerType === "Bus") {
 					shieldImgElmt.data = imgDir + "Minnesota-BUS.svg";
+				} else if (shield.type === "NB" && shield.bannerType === "Local" && shield.routeNumber.length <= 2) {
+					shieldImgElmt.data = imgDir + "NB-3-LOCAL.svg";
 				} else if (shield.type === "NE" && shield.bannerType === "Link" && shield.routeNumber.length <= 2) {
 					shieldImgElmt.data = imgDir + "Nebraska-LINK.svg";
 				} else if (shield.type === "NE" && shield.bannerType === "Spur" && shield.routeNumber.length <= 2) {
