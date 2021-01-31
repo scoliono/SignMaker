@@ -86,7 +86,7 @@ Shield.prototype.types = {
 	"MO" : "MO",
 	"MT" : "MT",
 	"MT 2nd" : "MT2",
-	"NB" : "cir",
+	"NB" : "NB",
 	"NE" : "NE",
 	"NV" : "NV",
 	"NH" : "NH",
