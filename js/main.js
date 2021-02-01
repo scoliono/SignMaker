@@ -602,6 +602,12 @@ const app = (function() {
 					} else if (shield.routeNumber.length >= 3) {
 						shieldImgElmt.data = imgDir + "Nebraska-3.svg";
 					}
+				} else if (shield.type === "NS") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "NS-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "NS-3.svg";
+					}
 				} else if (shield.type === "NV") {
 					shieldImgElmt.data = imgDir + "Nevada-2.svg";
 				} else if (shield.type === "NH") {
