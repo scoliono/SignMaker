@@ -510,6 +510,7 @@ const app = (function() {
 									lengthValue = 2;
 								}
 							}
+							console.log(lengthValue);
 						}
 						else {
 							fileExists = 200;
