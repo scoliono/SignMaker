@@ -52,16 +52,18 @@
 
 .bannerShieldContainer.AK .routeNumber {
 	color: var(--black);
-	text-align: right;
 	top: 0.1em;
-	right: 0.25em;
 }
 .bannerShieldContainer.AK.one .routeNumber {
-	font-family: "Series D";
+	font-family: "Series E";
+	text-align: center;
+	left: 0.35em;
 }
 .bannerShieldContainer.AK.two .routeNumber,
 .bannerShieldContainer.AK.three .routeNumber {
 	font-family: "Series C";
+	text-align: right;
+	right: 0.25em;
 }
 
 .bannerShieldContainer.AZ .routeNumber {
