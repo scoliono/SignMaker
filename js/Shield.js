@@ -88,6 +88,7 @@ Shield.prototype.types = {
 	"MT 2nd" : "MT2",
 	"NB" : "NB",
 	"NE" : "NE",
+	"NS" : "NS",
 	"NV" : "NV",
 	"NH" : "NH",
 	"NJ" : "elp",
