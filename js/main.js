@@ -217,6 +217,14 @@ const app = (function() {
 				break;
 			}
 		}
+		
+		const panelCornerSelectElmt = document.getElementById("panelCorner");
+		for (const option of panelCornerSelectElmt.options) {
+			if (option.value == panel.corner) {
+				option.selected = true;
+				break;
+			}
+		}
 
 		const exitNumberElmt = document.getElementById("exitNumber");
 		exitNumberElmt.value = panel.exitTab.number;
