@@ -509,10 +509,10 @@ const app = (function() {
 								ignoreBanner = true;
 								lengthValue = shield.routeNumber.length;
 								if (shield.routeNumber.length > 3) {
-									lengthValue = 3;
+									lengthValue = 4;
 								}
 								else if (shield.routeNumber.length == 1) {
-									lengthValue = 2;
+									lengthValue = 3;
 								}
 							}
 						}
