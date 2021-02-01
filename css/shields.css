@@ -276,11 +276,17 @@
 }
 .bannerShieldContainer.NB .routeNumber {
 	color: var(--black);
-	top: 0.15em;
-	font-family: "Series D";
+	top: 0.43em;
+	font-family: "Helvetica";
+	font-weight: bold;
+}
+.bannerShieldContainer.NB.two .routeNumber {
+	font-size: 1.3em;
 }
 .bannerShieldContainer.NB.three .routeNumber {
-	font-size: 0.8em;
+	font-size: 0.9em;
+	top: 0.87em;
+	left: -0.03em;
 }
 .bannerShieldContainer.NB.local.three .banner {
 	display: none;
