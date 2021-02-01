@@ -412,7 +412,7 @@ const app = (function() {
 
 			const guideArrowsElmt = document.createElement("div");
 			guideArrowsElmt.className = `guideArrows ${panel.sign.guideArrow.replace("/", "-").replace(" ", "_").toLowerCase()}`;
-			panelElmt.appendChild(guideArrowsElmt);
+			signCont.appendChild(guideArrowsElmt);
 
 			panelContainerElmt.appendChild(panelElmt);
 
@@ -558,6 +558,7 @@ const app = (function() {
 				signElmt.style.borderBottomRightRadius = "0";
 				signElmt.style.borderBottomWidth = "0";
 				guideArrowsElmt.style.display = "block";
+				guideArrowsElmt.style.visibility = "visible";
 
 				if ("Exit Only" == panel.sign.guideArrow) {
 					const exitOnlyArrowElmt = function() {
