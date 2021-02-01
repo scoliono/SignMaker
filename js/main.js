@@ -490,7 +490,7 @@ const app = (function() {
 				while(fileExists != 200) {
 					imgFileConstr = shield.type + "-" + lengthValue;
 					if (shield.bannerType != "None" && !ignoreBanner) {
-						imgFileConstr += "-" + shield.bannerType;
+						imgFileConstr += "-" + shield.bannerType.toUpperCase();
 					}
 					console.log("File to check: " + imgDir + imgFileConstr + ".svg");
 					fileExists = executeIfFileExist(imgDir + imgFileConstr + ".svg");
