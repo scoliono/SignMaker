@@ -486,32 +486,23 @@ const app = (function() {
 				}
 				var fileExists = 404;
 				var ignoreBanner = false;
-				var attempts = 0;
 				while(fileExists != 200) {
 					imgFileConstr = shield.type + "-" + lengthValue;
 					if (shield.bannerType != "None" && !ignoreBanner) {
 						imgFileConstr += "-" + shield.bannerType.toUpperCase();
 					}
-					console.log("File to check: " + imgDir + imgFileConstr + ".svg");
 					fileExists = executeIfFileExist(imgDir + imgFileConstr + ".svg");
 					lengthValue -= 1;
 					if (lengthValue == 0) {
-						if (shield.bannerType != "None" && !ignoreBanner) {
-							if (attempts = 0) {
+						if (shield.bannerType != "None" && !ignoreBanner) {		
+							ignoreBanner = true;
+							lengthValue = shield.routeNumber.length;
+							if (shield.routeNumber.length > 3) {
 								lengthValue = 3;
-								attempts ++;
 							}
-							else {
-								ignoreBanner = true;
-								lengthValue = shield.routeNumber.length;
-								if (shield.routeNumber.length > 3) {
-									lengthValue = 3;
-								}
-								else if (shield.routeNumber.length == 1) {
-									lengthValue = 2;
-								}
+							else if (shield.routeNumber.length == 1) {
+								lengthValue = 2;
 							}
-							console.log(lengthValue);
 						}
 						else {
 							fileExists = 200;
