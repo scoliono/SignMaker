@@ -31,16 +31,16 @@
 	top: 0.15em;
 }
 
-.bannerShieldContainer.C- .routeNumber {
+.bannerShieldContainer.C .routeNumber {
 	color: var(--countyYellow);
 	font-size: 1.25em;
 	top: 0.3em;
 }
-.bannerShieldContainer.C-.one .routeNumber,
-.bannerShieldContainer.C-two .routeNumber {
+.bannerShieldContainer.C.one .routeNumber,
+.bannerShieldContainer.Ctwo .routeNumber {
 	font-family: "Series D";
 }
-.bannerShieldContainer.C-.three .routeNumber {
+.bannerShieldContainer.C.three .routeNumber {
 	font-family: "Series C";
 }
 
