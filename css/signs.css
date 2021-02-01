@@ -144,43 +144,43 @@
 
 .panel.green .exitTab,
 .panel.green .sign,
-.panel.green .sign::after,
-.panel.green .exitTab::after,
+.panel.green .signContainer,
+.panel.green .exitTabContainer,
 .panel.green .guideArrows {
 	background-color: var(--green);
 }
 .panel.blue .exitTab,
 .panel.blue .sign,
-.panel.blue .sign::after,
-.panel.blue .exitTab::after,
+.panel.blue .signContainer,
+.panel.blue .exitTabContainer,
 .panel.blue .guideArrows {
 	background-color: var(--blue);
 }
 .panel.brown .exitTab,
 .panel.brown .sign,
-.panel.brown .sign::after,
-.panel.brown .exitTab::after,
+.panel.brown .signContainer,
+.panel.brown .exitTabContainer,
 .panel.brown .guideArrows {
 	background-color: var(--brown);
 }
 .panel.yellow .exitTab,
 .panel.yellow .sign,
-.panel.yellow .sign::after,
-.panel.yellow .exitTab::after,
+.panel.yellow .signContainer,
+.panel.yellow .exitTabContainer,
 .panel.yellow .guideArrows {
 	background-color: var(--yellow);
 }
 .panel.white .exitTab,
 .panel.white .sign,
-.panel.white .sign::after,
-.panel.white .exitTab::after,
+.panel.white .signContainer,
+.panel.white .exitTabContainer,
 .panel.white .guideArrows {
 	background-color: var(--white);
 }
 .panel.black .exitTab,
 .panel.black .sign,
-.panel.black .sign::after,
-.panel.black .exitTab::after,
+.panel.black .signContainer,
+.panel.black .exitTabContainer,
 .panel.black .guideArrows {
 	background-color: var(--black);
 }
@@ -219,7 +219,6 @@
 }
 .exitTabContainer,
 .signContainer {
-	background: var(--green);
 	z-index: 2;	
 }
 .signContainer,
