@@ -342,21 +342,6 @@ const app = (function() {
 	/**
 	 * Redraw the panels on the post.
 	 */
-	function executeIfFileExist(src) {
-		var request = new XMLHttpRequest(); 
-		var result = 0; 
-		request.open('GET', src, false);
-		request.onreadystatechange = function(){
-			if (request.readyState === 4){
-				if (request.status === 404) {  
-				} 
-				
-			}
-			result = request.status;
-		};
-		request.send();
-		return result;
-	}
 	const redraw = function() {
 		const postContainerElmt = document.getElementById("postContainer");
 		postContainerElmt.className = `polePosition${post.polePosition}`;
@@ -477,53 +462,259 @@ const app = (function() {
 				}
 				
 				// Shield type
-				var lengthValue = shield.routeNumber.length;
-				if (shield.routeNumber.length > 3) {
-					lengthValue = 3;
-				}
-				else if (shield.routeNumber.length == 1) {
-					lengthValue = 2;
-				}
-				var imgFileConstr = shield.type + "-" + lengthValue;
-				if (shield.bannerType != "None") {
-					imgFileConstr += "-" + shield.bannerType
-				}
-				var fileExists = 404;
-				var ignoreBanner = false;
-				var attempts = 0;
-				fileExists = executeIfFileExist(imgDir + imgFileConstr + ".svg");
-				while(fileExists != 200) {
-					lengthValue -= 1;
-					imgFileConstr = shield.type + "-" + lengthValue;
-					if (shield.bannerType != "None" && !ignoreBanner) {
-						imgFileConstr += "-" + shield.bannerType;
+				if (shield.type === "I-") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Interstate-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Interstate-3.svg";
 					}
-					fileExists = executeIfFileExist(imgDir + imgFileConstr + ".svg");
-					if (lengthValue == 0) {
-						if (shield.bannerType != "None" && !ignoreBanner) {
-							if (attempts = 0) {
-								lengthValue = 3;
-								attempts ++;
-							}
-							else {
-								ignoreBanner = true;
-								lengthValue = shield.routeNumber.length;
-								if (shield.routeNumber.length > 3) {
-									lengthValue = 3;
-								}
-								else if (shield.routeNumber.length == 1) {
-									lengthValue = 2;
-								}
-							}
-						}
-						else {
-							fileExists = 200;
-						}
+				} else if (shield.type === "US") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "US-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "US-3.svg";
 					}
+				} else if (shield.type === "cir") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Circle-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Circle-3.svg";
+					}
+				} else if (shield.type === "elp") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Circle-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Ellipse-3.svg";
+					}
+				} else if (shield.type === "rec") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Rectangle-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Rectangle-3.svg";
+					}
+				} else if (shield.type === "rec2") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Rectangle2-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Rectangle2-3.svg";
+					}
+				} else if (shield.type === "C-") {
+					shieldImgElmt.data = imgDir + "County-2.svg";
+				} else if (shield.type === "AL") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Alabama-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Alabama-3.svg";
+					}
+				} else if (shield.type === "AK") {
+					shieldImgElmt.data = imgDir + "Alaska-2.svg";
+				} else if (shield.type === "AZ") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Arizona-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Arizona-3.svg";
+					}
+				} else if (shield.type === "AR") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Arkansas-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Arkansas-3.svg";
+					}
+				} else if (shield.type === "CA") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "California-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "California-3.svg";
+					}
+				} else if (shield.type === "CO") {
+					shieldImgElmt.data = imgDir + "Colorado-2.svg";
+				} else if (shield.type === "DC") {
+					shieldImgElmt.data = imgDir + "WashDC-2.svg";
+				} else if (shield.type === "FL") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Florida-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Florida-3.svg";
+					}
+				} else if (shield.type === "GA") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Georgia-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Georgia-3.svg";
+					}
+				} else if (shield.type === "HI") {
+					shieldImgElmt.data = imgDir + "Hawaii-2.svg";
+				} else if (shield.type === "ID") {
+					shieldImgElmt.data = imgDir + "Idaho-2.svg";
+				} else if (shield.type === "IL") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Illinois-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Illinois-3.svg";
+					}
+				} else if (shield.type === "IN") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Indiana-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Indiana-3.svg";
+					}
+				} else if (shield.type === "KS") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Kansas-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Kansas-3.svg";
+					}
+				} else if (shield.type === "LA") {
+					shieldImgElmt.data = imgDir + "Louisiana-2.svg";
+				} else if (shield.type === "MD") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Maryland-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Maryland-3.svg";
+					}
+				} else if (shield.type === "MI") {
+					shieldImgElmt.data = imgDir + "Michigan-2.svg";
+				} else if (shield.type === "MN") {
+					shieldImgElmt.data = imgDir + "Minnesota-2.svg";
+				} else if (shield.type === "MO") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Missouri-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Missouri-3.svg";
+					}
+				} else if (shield.type === "MT") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Montana-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Montana-3.svg";
+					}
+				} else if (shield.type === "MT2") {
+					shieldImgElmt.data = imgDir + "Montana-2-Secondary.svg";
+				} else if (shield.type === "NB") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "NB-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "NB-3-CONN.svg";
+					}
+				} else if (shield.type === "NE") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Nebraska-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Nebraska-3.svg";
+					}
+				} else if (shield.type === "NL") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "NL-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "NL-3.svg";
+					}
+				} else if (shield.type === "NS") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "NS-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "NS-3.svg";
+					}
+				} else if (shield.type === "NV") {
+					shieldImgElmt.data = imgDir + "Nevada-2.svg";
+				} else if (shield.type === "NH") {
+					shieldImgElmt.data = imgDir + "NewHampshire-2.svg";
+				} else if (shield.type === "NM") {
+					shieldImgElmt.data = imgDir + "NewMexico-2.svg";
+				} else if (shield.type === "NY") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "NewYork-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "NewYork-3.svg";
+					}
+				} else if (shield.type === "NC") {
+					shieldImgElmt.data = imgDir + "NorthCarolina-2.svg";
+				} else if (shield.type === "ND") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "NorthDakota-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "NorthDakota-3.svg";
+					}
+				} else if (shield.type === "OH") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Ohio-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Ohio-3.svg";
+					}
+				} else if (shield.type === "OK") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Oklahoma-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Oklahoma-3.svg";
+					}
+				} else if (shield.type === "OR") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Oregon-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Oregon-3.svg";
+					}
+				} else if (shield.type === "PA") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Pennsylvania-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Pennsylvania-3.svg";
+					}
+				} else if (shield.type == "PEI") {
+					shieldImgElmt.data = imgDir + "PEI-2.svg"
+				} else if (shield.type === "QC") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "QC-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "QC-3.svg";
+					}
+				} else if (shield.type == "QC2") {
+					shieldImgElmt.data = imgDir + "QC-3-Secondary.svg"
+				} else if (shield.type === "RI") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "RhodeIsland-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "RhodeIsland-3.svg";
+					}
+				} else if (shield.type === "SC") {
+					shieldImgElmt.data = imgDir + "SouthCarolina-2.svg";
+				} else if (shield.type === "SD") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "SouthDakota-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "SouthDakota-3.svg";
+					}
+				} else if (shield.type === "TN") {
+					shieldImgElmt.data = imgDir + "Tennessee-2.svg";
+				} else if (shield.type === "TN2") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Tennessee-2-Secondary.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Tennessee-3-Secondary.svg";
+					}
+				} else if (shield.type === "TX") {
+					shieldImgElmt.data = imgDir + "Texas-2.svg";
+				} else if (shield.type === "UT") {
+					shieldImgElmt.data = imgDir + "Utah-2.svg";
+				} else if (shield.type === "VT") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Vermont-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Vermont-3.svg";
+					}
+				} else if (shield.type === "VA") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Virginia-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Virginia-3.svg";
+					}
+				} else if (shield.type === "VA2") {
+					shieldImgElmt.data = imgDir + "Circle-2.svg";
+				} else if (shield.type === "WA") {
+					shieldImgElmt.data = imgDir + "Washington-2.svg";
+				} else if (shield.type === "WI") {
+					shieldImgElmt.data = imgDir + "Wisconsin-2.svg";
+				} else if (shield.type === "WY") {
+					shieldImgElmt.data = imgDir + "Wyoming-2.svg";
 				}
-				shieldImgElmt.data = imgDir + imgFileConstr + ".svg";
-				//shield
-				
 
 				// Route Number
 				routeNumberElmt.appendChild(document.createTextNode(shield.routeNumber));
@@ -534,7 +725,64 @@ const app = (function() {
 				}
 
 				// Special states
-				
+				if (shield.type === "I-" && shield.bannerType === "Bus") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Interstate-2-BUS.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Interstate-3-BUS.svg";
+					}
+				} else if (shield.type === "AZ" && shield.bannerType === "Loop" && shield.routeNumber.length >= 3) {
+					shieldImgElmt.data = imgDir + "Arizona-3-LOOP.svg";
+					// set bannerPosition to "Above" as to avoid display issues
+					bannerShieldContainerElmt.style.flexDirection = "column";
+					shield.bannerPosition = "Above";
+				} else if (shield.type === "FL" && shield.bannerType === "Toll") {
+					shieldImgElmt.data = imgDir + "Florida-TOLL.svg";
+				} else if (shield.type === "GA" && shield.bannerType === "Alt") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Georgia-2-ALT.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Georgia-3-ALT.svg";
+					}
+				} else if (shield.type === "GA" && shield.bannerType === "Byp") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Georgia-2-BYP.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Georgia-3-BYP.svg";
+					}
+				} else if (shield.type === "GA" && shield.bannerType === "Conn") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Georgia-2-CONN.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Georgia-3-CONN.svg";
+					}
+				} else if (shield.type === "GA" && shield.bannerType === "Loop") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Georgia-2-LOOP.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Georgia-3-LOOP.svg";
+					}
+				} else if (shield.type === "GA" && shield.bannerType === "Spur") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "Georgia-2-SPUR.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "Georgia-3-SPUR.svg";
+					}
+				} else if (shield.type === "MN" && shield.bannerType === "Bus") {
+					shieldImgElmt.data = imgDir + "Minnesota-BUS.svg";
+				} else if (shield.type === "NB" && shield.bannerType === "Local" && shield.routeNumber.length >= 3) {
+					shieldImgElmt.data = imgDir + "NB-3-LOCAL.svg";
+				} else if (shield.type === "NE" && shield.bannerType === "Link" && shield.routeNumber.length <= 2) {
+					shieldImgElmt.data = imgDir + "Nebraska-LINK.svg";
+				} else if (shield.type === "NE" && shield.bannerType === "Spur" && shield.routeNumber.length <= 2) {
+					shieldImgElmt.data = imgDir + "Nebraska-SPUR.svg";
+				} else if (shield.type === "NS" && shield.bannerType === "Conn" && shield.routeNumber.length >= 2) {
+					shieldImgElmt.data = imgDir + "NS-3-CONN.svg";
+				}else if (shield.type === "TX" && shield.bannerType === "Loop") {
+					shieldImgElmt.data = imgDir + "Texas-2-LOOP.svg";
+				} else if (shield.type === "TX" && shield.bannerType === "Spur") {
+					shieldImgElmt.data = imgDir + "Texas-2-SPUR.svg";
+				}
 			}
 
 			// Control text
