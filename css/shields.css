@@ -315,6 +315,12 @@
 .bannerShieldContainer.NE.spur.two .routeNumber {
 	top: -0.1em;
 }
+.bannerShieldContainer.NS.three .routeNumber {
+	font-size: 1.2em;
+	top: 0.73em;
+	color: white;
+	font-family: "Series D";
+}
 
 .bannerShieldContainer.NV .routeNumber {
 	color: var(--black);
