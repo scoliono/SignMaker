@@ -602,6 +602,12 @@ const app = (function() {
 					} else if (shield.routeNumber.length >= 3) {
 						shieldImgElmt.data = imgDir + "Nebraska-3.svg";
 					}
+				} else if (shield.type === "NL") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "NL-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "NL-3.svg";
+					}
 				} else if (shield.type === "NS") {
 					if (shield.routeNumber.length <= 2) {
 						shieldImgElmt.data = imgDir + "NS-2.svg";
@@ -652,6 +658,16 @@ const app = (function() {
 					} else if (shield.routeNumber.length >= 3) {
 						shieldImgElmt.data = imgDir + "Pennsylvania-3.svg";
 					}
+				} else if (shield.type == "PEI") {
+					shieldImgElmt.data = imgDir + "PEI-2.svg"
+				} else if (shield.type === "QC") {
+					if (shield.routeNumber.length <= 2) {
+						shieldImgElmt.data = imgDir + "QC-2.svg";
+					} else if (shield.routeNumber.length >= 3) {
+						shieldImgElmt.data = imgDir + "QC-3.svg";
+					}
+				} else if (shield.type == "QC2") {
+					shieldImgElmt.data = imgDir + "QC-3-Secondary.svg"
 				} else if (shield.type === "RI") {
 					if (shield.routeNumber.length <= 2) {
 						shieldImgElmt.data = imgDir + "RhodeIsland-2.svg";
@@ -760,7 +776,9 @@ const app = (function() {
 					shieldImgElmt.data = imgDir + "Nebraska-LINK.svg";
 				} else if (shield.type === "NE" && shield.bannerType === "Spur" && shield.routeNumber.length <= 2) {
 					shieldImgElmt.data = imgDir + "Nebraska-SPUR.svg";
-				} else if (shield.type === "TX" && shield.bannerType === "Loop") {
+				} else if (shield.type === "NS" && shield.bannerType === "Conn" && shield.routeNumber.length >= 2) {
+					shieldImgElmt.data = imgDir + "NS-3-CONN.svg";
+				}else if (shield.type === "TX" && shield.bannerType === "Loop") {
 					shieldImgElmt.data = imgDir + "Texas-2-LOOP.svg";
 				} else if (shield.type === "TX" && shield.bannerType === "Spur") {
 					shieldImgElmt.data = imgDir + "Texas-2-SPUR.svg";

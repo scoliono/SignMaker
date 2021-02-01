@@ -21,6 +21,7 @@
 
 .bannerShieldContainer.US .routeNumber,
 .bannerShieldContainer.NS.two .routeNumber,
+.bannerShieldContainer.NS.one .routeNumber,
 .bannerShieldContainer.cir .routeNumber,
 .bannerShieldContainer.elp .routeNumber,
 .bannerShieldContainer.rec .routeNumber,
@@ -316,15 +317,37 @@
 .bannerShieldContainer.NE.spur.two .routeNumber {
 	top: -0.1em;
 }
+.bannerShieldContainer.NL .routeNumber {
+	font-size: 1.8em;
+	color: var(--black);
+	font-family: "Series EM";
+	top: 0.03em;
+}
+.bannerShieldContainer.NL.three .routeNumber {
+	font-size: 1.6em;
+	font-family: "Series D";
+	top: 0.12em;
+}
 .bannerShieldContainer.NS.three .routeNumber {
 	font-size: 1.05em;
 	top: 0.88em;
+	letter-spacing: .05em;
+	left: .035em;
 	color: white;
 	font-family: "Series D";
 }
+.bannerShieldContainer.bannerShieldContainer.NS.conn.three .routeNumber {
+	font-size: 1.05em;
+	color: white;
+	top: .51em;
+	letter-spacing: 0.05em;
+	left: .015em;
+	font-family: "Series D";
+}
 .bannerShieldContainer.NS.trunk.two .banner,
-.bannerShieldContainer.NS.conn.three .banner {
-	display: none;
+.bannerShieldContainer.NS.conn .banner,
+.bannerShieldContainer.NS.arterial.three .banner {
+	display: none;	
 }
 
 .bannerShieldContainer.NV .routeNumber {
@@ -423,7 +446,32 @@
 	font-family: "Series D";
 	top: 0.2em;
 }
-
+.bannerShieldContainer.PEI .routeNumber {
+	font-size: 1.2em;
+	top: 0.7em;
+	color: var(--black);
+	font-family: "Series C";
+}
+.bannerShieldContainer.PEI.three .routeNumber {
+	font-size: 1.1em;
+	top: .8em;
+}
+.bannerShieldContainer.QC .routeNumber {
+	font-size: 1.2rem;
+	color: var(--white);
+	top: 0.4em;
+	font-family: "Series EM";
+}
+.bannerShieldContainer.QC.two .routeNumber {
+	font-family: "Series D";
+	top: 0.42em;
+}
+.bannerShieldContainer.QC2 .routeNumber {
+	font-size: 1.2rem;
+	color: var(--white);
+	top: 0.55em;
+	font-family: "Series C";
+}
 .bannerShieldContainer.RI .routeNumber {
 	color: var(--black);
 	font-family: "Series D";
