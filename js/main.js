@@ -494,6 +494,7 @@ const app = (function() {
 					}
 					console.log("File to check: " + imgDir + imgFileConstr + ".svg");
 					fileExists = executeIfFileExist(imgDir + imgFileConstr + ".svg");
+					lengthValue -= 1;
 					if (lengthValue == 0) {
 						if (shield.bannerType != "None" && !ignoreBanner) {
 							if (attempts = 0) {
@@ -516,9 +517,6 @@ const app = (function() {
 							fileExists = 200;
 						}
 					}
-					console.log(imgFileConstr);
-					lengthValue -= 1;
-					console.log(imgFileConstr +" ok?");
 				}
 				shieldImgElmt.data = imgDir + imgFileConstr + ".svg";
 				//shield
