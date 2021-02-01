@@ -20,6 +20,7 @@
 }
 
 .bannerShieldContainer.US .routeNumber,
+.bannerShieldContainer.NS.two .routeNumber,
 .bannerShieldContainer.cir .routeNumber,
 .bannerShieldContainer.elp .routeNumber,
 .bannerShieldContainer.rec .routeNumber,
@@ -320,6 +321,10 @@
 	top: 0.88em;
 	color: white;
 	font-family: "Series D";
+}
+.bannerShieldContainer.NS.trunk.two .banner,
+.bannerShieldContainer.NS.conn.three .banner {
+	display: none;
 }
 
 .bannerShieldContainer.NV .routeNumber {
