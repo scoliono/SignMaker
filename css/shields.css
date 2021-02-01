@@ -280,6 +280,7 @@
 	font-family: "Helvetica";
 	font-weight: bold;
 }
+.bannerShieldContainer.NB.one .routeNumber,
 .bannerShieldContainer.NB.two .routeNumber {
 	font-size: 1.3em;
 }
