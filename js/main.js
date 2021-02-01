@@ -20,6 +20,10 @@ const app = (function() {
 		for (const color in lib.colors) {
 			lib.appendOption(colorSelectElmt, color, {text : color});
 		}
+		const cornerTypeSelectElmt = document.getElementById("panelCorner");
+		for (const corner of Panel.prototype.cornerType) {
+			lib.appendOption(cornerTypeSelectElmt, corner, {selected : (corner == "Round")});
+		}
 
 		// Populate exit tab position options
 		const exitTabPositionSelectElmt = document.getElementById("exitTabPosition");
@@ -159,6 +163,7 @@ const app = (function() {
 
 		// Exit Tab
 		panel.color = form["panelColor"].value;
+		panel.corner = form["panelCorner"].value;
 		panel.exitTab.number = form["exitNumber"].value;
 		panel.exitTab.width = form["exitTabWidth"].value;
 		panel.exitTab.position = form["exitTabPosition"].value;
@@ -173,7 +178,7 @@ const app = (function() {
 		panel.sign.actionMessage = panel.sign.actionMessage.replace("1/4", "¼");
 		panel.sign.actionMessage = panel.sign.actionMessage.replace("3/4", "¾");
 
-		// Shileds
+		// Shields
 		panel.sign.shieldBacks = form["shieldBacks"].checked;
 		for (let shieldIndex = 0, length = panel.sign.shields.length; shieldIndex < length; shieldIndex++) {
 			panel.sign.shields[shieldIndex].type = document.getElementById(`shield${shieldIndex}_type`).value;
@@ -366,15 +371,22 @@ const app = (function() {
 		lib.clearChildren(panelContainerElmt);
 		for (const panel of post.panels) {
 			const panelElmt = document.createElement("div");
-			panelElmt.className = `panel ${panel.color.toLowerCase()}`;
+			panelElmt.className = `panel ${panel.color.toLowerCase()} ${panel.corner.toLowerCase()}`;
+
+			const exitTabCont = document.createElement("div");
+			exitTabCont.className = `exitTabContainer ${panel.exitTab.position.toLowerCase()} ${panel.exitTab.width.toLowerCase()}`;
+			panelElmt.appendChild(exitTabCont);
 
 			const exitTabElmt = document.createElement("div");
 			exitTabElmt.className = `exitTab ${panel.exitTab.position.toLowerCase()} ${panel.exitTab.width.toLowerCase()}`;
-			panelElmt.appendChild(exitTabElmt);
+			exitTabCont.appendChild(exitTabElmt);
 
+			const signCont = document.createElement("div");
+			signCont.className = `signContainer exit-${panel.exitTab.width.toLowerCase()}`;
+			panelElmt.appendChild(signCont);
 			const signElmt = document.createElement("div");
-			signElmt.className = "sign";
-			panelElmt.appendChild(signElmt);
+			signElmt.className = `sign exit-${panel.exitTab.width.toLowerCase()}`;
+			signCont.appendChild(signElmt);
 
 			const sideLeftArrowElmt = document.createElement("div");
 			sideLeftArrowElmt.className = "sideLeftArrow";
@@ -418,6 +430,8 @@ const app = (function() {
 					exitTabElmt.appendChild(document.createTextNode(txtArr.slice(2).join("")));
 				}
 				exitTabElmt.style.visibility = "visible";
+				exitTabCont.className += " tabVisible";
+				signElmt.className += " tabVisible";
 			}
 
 			// Shields

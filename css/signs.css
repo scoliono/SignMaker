@@ -89,6 +89,7 @@
 		width: -moz-max-content;
 		width: -webkit-max-content;
 	width: intrinsic;
+	z-index: -2;
 }
 
 .panel {
@@ -143,31 +144,43 @@
 
 .panel.green .exitTab,
 .panel.green .sign,
+.panel.green .sign::after,
+.panel.green .exitTab::after,
 .panel.green .guideArrows {
 	background-color: var(--green);
 }
 .panel.blue .exitTab,
 .panel.blue .sign,
+.panel.blue .sign::after,
+.panel.blue .exitTab::after,
 .panel.blue .guideArrows {
 	background-color: var(--blue);
 }
 .panel.brown .exitTab,
 .panel.brown .sign,
+.panel.brown .sign::after,
+.panel.brown .exitTab::after,
 .panel.brown .guideArrows {
 	background-color: var(--brown);
 }
 .panel.yellow .exitTab,
 .panel.yellow .sign,
+.panel.yellow .sign::after,
+.panel.yellow .exitTab::after,
 .panel.yellow .guideArrows {
 	background-color: var(--yellow);
 }
 .panel.white .exitTab,
 .panel.white .sign,
+.panel.white .sign::after,
+.panel.white .exitTab::after,
 .panel.white .guideArrows {
 	background-color: var(--white);
 }
 .panel.black .exitTab,
 .panel.black .sign,
+.panel.black .sign::after,
+.panel.black .exitTab::after,
 .panel.black .guideArrows {
 	background-color: var(--black);
 }
@@ -187,8 +200,6 @@
 	visibility: hidden; /* hides exitTab by default when loading page */
 	float: none;
 	min-height: 2.25rem;
-	margin-right: 0.75rem;	/* Margin keeps the edge of the tab from going above the */
-	margin-left: 0.75rem;	/* curved corners of the panel below */
 	padding: 0 0.5rem 0rem 0.5rem;
 }
 .exitTab.narrow {
@@ -197,35 +208,69 @@
 		width: intrinsic;
 	width: max-content;
 }
-.exitTab.narrow.center {
+
+.exitTabContainer.wide, 
+.exitTabContainer.narrow {
+	margin-right: 0.75rem; /* Margin keeps the edge of the tab from going above the */
+	margin-left: 0.75rem; /* curved corners of the panel below */
+}
+.narrow.center {
 	margin: auto;
 }
-.exitTab.narrow.left {
+.exitTabContainer,
+.signContainer {
+	background: var(--green);
+	z-index: 2;	
+}
+.signContainer,
+.exitTabContainer.narrow {
+	width: max-content;
+}
+.exitTabContainer.narrow.left {
 	margin-right: auto;
 }
-.exitTab.narrow.right {
+.exitTabContainer.narrow.right {
 	margin-left: auto;
 }
-.exitTab.wide.left {
+.exitTab.wide.left,
+.exitTab.full.left {
 	justify-content: flex-start;
 }
-.exitTab.wide.center {
+.exitTab.wide.center,
+.exitTab.full.center {
 	justify-content: center;
 }
-.exitTab.wide.right {
+.exitTab.wide.right,
+.exitTab.full.right {
 	justify-content: flex-end;
 }
-
+.exitTab.full {
+	margin-left: 0rem;
+	margin-right: 0rem;
+	border-radius: 0.75rem 0.75rem 0 0;
+}
+.sign.exit-full.tabVisible {
+	border-radius: 0 0 0.75rem 0.75rem;
+}
 .sign {
 	border-radius: 0.75rem;
 	border-style: solid;
 	border-width: 0.2rem;
-
 	display: flex;
 	clear: both;
 	flex-direction: row;
+	visibility: visible;
 }
-
+.panel.round .exitTabContainer,
+.panel.round .signContainer {
+	visibility: hidden;
+}
+.panel .exitTabContainer {
+	visibility: hidden;
+}
+.panel .tabVisible {
+	visibility: visible;
+}
 .sideLeftArrow, .sideRightArrow {
 	font-family: "Arrows One";
 	font-size: 5rem; /* Makes arrows large and visble */
