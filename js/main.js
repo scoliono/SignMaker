@@ -484,16 +484,10 @@ const app = (function() {
 				else if (shield.routeNumber.length == 1) {
 					lengthValue = 2;
 				}
-				var imgFileConstr = shield.type + "-" + lengthValue;
-				if (shield.bannerType != "None") {
-					imgFileConstr += "-" + shield.bannerType
-				}
 				var fileExists = 404;
 				var ignoreBanner = false;
 				var attempts = 0;
-				fileExists = executeIfFileExist(imgDir + imgFileConstr + ".svg");
 				while(fileExists != 200) {
-					lengthValue -= 1;
 					imgFileConstr = shield.type + "-" + lengthValue;
 					if (shield.bannerType != "None" && !ignoreBanner) {
 						imgFileConstr += "-" + shield.bannerType;
@@ -509,10 +503,10 @@ const app = (function() {
 								ignoreBanner = true;
 								lengthValue = shield.routeNumber.length;
 								if (shield.routeNumber.length > 3) {
-									lengthValue = 4;
+									lengthValue = 3;
 								}
 								else if (shield.routeNumber.length == 1) {
-									lengthValue = 3;
+									lengthValue = 2;
 								}
 							}
 						}
@@ -520,6 +514,7 @@ const app = (function() {
 							fileExists = 200;
 						}
 					}
+					lengthValue -= 1;
 				}
 				shieldImgElmt.data = imgDir + imgFileConstr + ".svg";
 				//shield
