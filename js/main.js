@@ -632,6 +632,9 @@ const app = (function() {
 					actionMessageElmt.appendChild(document.createTextNode(txtArr.slice(2).join("")));
 				}
 			}
+			else {
+				actionMessageElmt.style.display = "none";
+			}
 			// Guide arrows
 			if ("Side Left" == panel.sign.guideArrow) {
 				sideLeftArrowElmt.style.display = "block";
