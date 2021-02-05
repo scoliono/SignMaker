@@ -88,4 +88,5 @@ Sign.prototype.guideArrows = [
 Sign.prototype.otherSymbols = [
 	"None",
 	"Quebec-Style Exit Marker",
+	"Quebec-Left"
 ]

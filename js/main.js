@@ -711,11 +711,15 @@ const app = (function() {
 			}
 			// Bottom Symbols
 			switch(panel.sign.otherSymbol) {
-				case "Quebec-Style Exit Marker":
+				case "Quebec-Style Exit Marker": //Fallthrough
+				case "Quebec-Left":
 					const markerElmt = document.createElement("object");
 					markerElmt.className = "markerImg";
 					markerElmt.type = "image/svg+xml";
 					markerElmt.data = "img/other-symbols/QC-Exit.svg";
+					if (panel.sign.otherSymbol == "Quebec-Left") {
+						otherSymbolsElmt.className += " left";
+					}
 					otherSymbolsElmt.appendChild(markerElmt);
 				default:
 					
