@@ -8,6 +8,8 @@ class Sign {
 	 * @param {boolean} [opt.shieldBacks=false] - Whether or not shields should be displayed with backings.
 	 * @param {string} [opt.guideArrow] - Which guide arrow to display on the sign, if any.
 	 * @param {number} [opt.guideArrowLanes=1] - Number of lanes actoss to display guide arrows.
+	 * @param {string} [opt.otherSymbols] - Other symbols on the bottom of signs (like Quebec style exit markers)
+	 * @param {string} [opt.oSNum=""] - Number to place on otherSymbol
 	 * @param {string} [opt.actionMessage=""] - Custom subtext to display on the sign.
 	 * @param {Shield[]} [opt.shields] - Array of shields to include on sign.
 	 */
@@ -17,6 +19,8 @@ class Sign {
 			shieldBacks = false,
 			guideArrow,
 			guideArrowLanes = 1,
+			otherSymbol,
+			oSNum = "",
 			actionMessage = "",
 			shields = []
 		} = {}
@@ -26,6 +30,12 @@ class Sign {
 			this.shieldPosition = shieldPosition;
 		} else {
 			this.shieldPosition = "Above";
+		}
+		if (this.otherSymbols.includes(otherSymbol)) {
+			this.otherSymbol = otherSymbol;
+		}
+		else {
+			this.otherSymbol = "None";
 		}
 		this.shieldBacks = shieldBacks;
 		if (this.guideArrows.includes(guideArrow)) {
@@ -38,6 +48,7 @@ class Sign {
 		} else {
 			this.guideArrowLanes = 0;
 		}
+		this.oSNum = oSNum;
 		this.actionMessage = actionMessage;
 		this.shields = shields;
 	}
@@ -72,6 +83,9 @@ Sign.prototype.guideArrows = [
 	"Right Arrow",
 	"Right/Up Arrow",
 	"Down Arrow",
-	"Up Arrow",
-	"Action Message"
+	"Up Arrow"
 ];
+Sign.prototype.otherSymbols = [
+	"None",
+	"Quebec-Style Exit Marker",
+]

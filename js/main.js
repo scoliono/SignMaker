@@ -48,6 +48,11 @@ const app = (function() {
 		for (const guideArrow of Sign.prototype.guideArrows) {
 			lib.appendOption(guideArrowSelectElmt, guideArrow);
 		}
+		// Populate the other symbol options
+		const otherSymbolSelectElement = document.getElementById("otherSymbol");
+		for (const otherSymbol of Sign.prototype.otherSymbols) {
+			lib.appendOption(otherSymbolSelectElement, otherSymbol);
+		}
 
 		newPanel();
 	};
@@ -173,6 +178,8 @@ const app = (function() {
 		panel.sign.shieldPosition = form["shieldsPosition"].value;
 		panel.sign.guideArrow = form["guideArrow"].value;
 		panel.sign.guideArrowLanes = form["guideArrowLanes"].value;
+		panel.sign.otherSymbol = form["otherSymbol"].value;
+		panel.sign.oSNum = form["oSNum"].value;
 		panel.sign.actionMessage = form["actionMessage"].value;
 		panel.sign.actionMessage = panel.sign.actionMessage.replace("1/2", "½");
 		panel.sign.actionMessage = panel.sign.actionMessage.replace("1/4", "¼");
@@ -188,12 +195,13 @@ const app = (function() {
 			panel.sign.shields[shieldIndex].bannerPosition = document.getElementById(`shield${shieldIndex}_bannerPosition`).value;
 		}
 
-		// Action Message
-		if (panel.sign.guideArrow == "Action Message") {
-			form["actionMessage"].style.display = "block";
+		// Other Symbols Extra
+		if (panel.sign.otherSymbol != "None") {
+			form["oSNum"].style.display = "block";
 		} else {
-			form["actionMessage"].style.display = "none";
+			form["oSNum"].style.display = "none";
 		}
+		
 
 		redraw();
 	};
@@ -272,12 +280,18 @@ const app = (function() {
 		const guideArrowLanesElmt = document.getElementById("guideArrowLanes");
 		guideArrowLanesElmt.value = panel.sign.guideArrowLanes;
 
-		const actionMessageElmt = document.getElementById("actionMessage");
-		if (panel.sign.guideArrow == "Action Message") {
-			actionMessageElmt.style.display = "block";
-		} else {
-			actionMessageElmt.style.display = "none";
+		const otherSymbolSelectElement = document.getElementById("otherSymbol");
+		for (const option of otherSymbolSelectElement.options) {
+			if (option.value == panel.sign.otherSymbol) {
+				option.selected = true;
+				break;
+			}
 		}
+
+		const oSNumElmt = document.getElementById("oSNum");
+		oSNumElmt.value = panel.sign.oSNum;
+
+		const actionMessageElmt = document.getElementById("actionMessage");
 		actionMessageElmt.value = panel.sign.actionMessage;
 	};
 
@@ -374,7 +388,8 @@ const app = (function() {
 		const postContainerElmt = document.getElementById("postContainer");
 		postContainerElmt.className = `polePosition${post.polePosition}`;
 
-		const panelContainerElmt = document.getElementById("panelContainer");		
+		const panelContainerElmt = document.getElementById("panelContainer");
+
 		
 		lib.clearChildren(panelContainerElmt);
 		for (const panel of post.panels) {
@@ -417,10 +432,24 @@ const app = (function() {
 			sideRightArrowElmt.className = "sideRightArrow";
 			sideRightArrowElmt.appendChild(document.createTextNode(lib.specialCharacters.sideRightArrow));
 			signElmt.appendChild(sideRightArrowElmt);
+			
+			
 
 			const guideArrowsElmt = document.createElement("div");
 			guideArrowsElmt.className = `guideArrows ${panel.sign.guideArrow.replace("/", "-").replace(" ", "_").toLowerCase()}`;
 			signCont.appendChild(guideArrowsElmt);
+
+			const otherSymbolsElmt = document.createElement("div");
+			otherSymbolsElmt.className = `otherSymbols ${panel.sign.otherSymbol.replace("/", "-").replace(" ", "_").toLowerCase()}`;
+			guideArrowsElmt.appendChild(otherSymbolsElmt);
+
+			const oSNumElmt = document.createElement("div");
+			oSNumElmt.className = `oSNum`;
+			otherSymbolsElmt.appendChild(oSNumElmt);
+
+			const actionMessageElmt = document.createElement("div");
+			actionMessageElmt.className = `actionMessage`;
+			guideArrowsElmt.appendChild(actionMessageElmt);
 
 			panelContainerElmt.appendChild(panelElmt);
 
@@ -555,7 +584,54 @@ const app = (function() {
 				controlTextElmt.appendChild(document.createElement("br"));
 			}
 			controlTextElmt.appendChild(document.createTextNode(controlTextArray[controlTextArray.length - 1]));
-
+			if (panel.sign.oSNum != "" && panel.sign.otherSymbol != "None") {
+				signElmt.style.borderBottomLeftRadius = "0";
+				signElmt.style.borderBottomRightRadius = "0";
+				signElmt.style.borderBottomWidth = "0";
+				guideArrowsElmt.style.display = "block";
+				guideArrowsElmt.style.visibility = "visible";
+				oSNumElmt.style.visibility = "visible";
+				oSNumElmt.className = `oSNum`;
+				oSNumElmt.appendChild(document.createTextNode(panel.sign.oSNum));
+				switch (panel.sign.oSNum.length) {
+					case 1:
+						oSNumElmt.className += " short";
+						break;
+					case 2:
+						oSNumElmt.className += " short";
+						break;
+					case 3:
+						oSNumElmt.className += " three";
+						break;
+					case 5:
+						oSNumElmt.className += " five";
+						break;
+					default:
+						oSNumElmt.className += " three";
+						break;
+				}
+			}
+			
+			if (panel.sign.actionMessage != "") {
+				actionMessageElmt.style.fontFamily = "Series E";
+				signElmt.style.borderBottomLeftRadius = "0";
+				signElmt.style.borderBottomRightRadius = "0";
+				signElmt.style.borderBottomWidth = "0";
+				guideArrowsElmt.style.display = "block";
+				guideArrowsElmt.style.visibility = "visible";
+				actionMessageElmt.style.visibility = "visible";
+				actionMessageElmt.style.display = "inline-flex";
+				actionMessageElmt.className = `actionMessage action_message`;
+				const txtArr = panel.sign.actionMessage.split(/(\d+\S*)/);
+				actionMessageElmt.appendChild(document.createTextNode(txtArr[0]));
+				if (txtArr.length > 1) {
+					const spanElmt = document.createElement("span");
+					spanElmt.className = "numeral";
+					spanElmt.appendChild(document.createTextNode(txtArr[1]));
+					actionMessageElmt.appendChild(spanElmt);
+					actionMessageElmt.appendChild(document.createTextNode(txtArr.slice(2).join("")));
+				}
+			}
 			// Guide arrows
 			if ("Side Left" == panel.sign.guideArrow) {
 				sideLeftArrowElmt.style.display = "block";
@@ -567,7 +643,7 @@ const app = (function() {
 				signElmt.style.borderBottomWidth = "0";
 				guideArrowsElmt.style.display = "block";
 				guideArrowsElmt.style.visibility = "visible";
-
+				
 				if ("Exit Only" == panel.sign.guideArrow) {
 					const exitOnlyArrowElmt = function() {
 						const exitOnlyArrowElmt = document.createElement("span");
@@ -616,35 +692,33 @@ const app = (function() {
 						}
 					}
 				} else {
-					if (panel.sign.guideArrow == "Action Message") {
-						guideArrowsElmt.style.display = "flex";
-						const txtArr = panel.sign.actionMessage.split(/(\d+\S*)/);
-						guideArrowsElmt.appendChild(document.createTextNode(txtArr[0]));
-						if (txtArr.length > 1) {
-							const spanElmt = document.createElement("span");
-							spanElmt.className = "numeral";
-							spanElmt.appendChild(document.createTextNode(txtArr[1]));
-							guideArrowsElmt.appendChild(spanElmt);
-							guideArrowsElmt.appendChild(document.createTextNode(txtArr.slice(2).join("")));
-						}
+					if (panel.sign.guideArrow == "Down Arrow" || panel.sign.guideArrow == "Up Arrow") {
+						guideArrowsElmt.style.fontFamily = "Arrows Two";
 					} else {
-						if (panel.sign.guideArrow == "Down Arrow" || panel.sign.guideArrow == "Up Arrow") {
-							guideArrowsElmt.style.fontFamily = "Arrows Two";
-						} else {
-							guideArrowsElmt.style.fontFamily = "Arrows One";
+						guideArrowsElmt.style.fontFamily = "Arrows One";
+					}
+					for (let arrowIndex = 0, length = panel.sign.guideArrowLanes; arrowIndex < length; arrowIndex++) {
+						const arrowElmt = document.createElement("span");
+						arrowElmt.className = "arrow";
+						let arrowChoice = panel.sign.guideArrow;
+						if (panel.sign.guideArrow.includes("/Up")) {
+							arrowElmt.className += " rotate180";
 						}
-						for (let arrowIndex = 0, length = panel.sign.guideArrowLanes; arrowIndex < length; arrowIndex++) {
-							const arrowElmt = document.createElement("span");
-							arrowElmt.className = "arrow";
-							let arrowChoice = panel.sign.guideArrow;
-							if (panel.sign.guideArrow.includes("/Up")) {
-								arrowElmt.className += " rotate180";
-							}
-							arrowElmt.appendChild(document.createTextNode(lib.specialCharacters[arrowChoice]));
-							guideArrowsElmt.appendChild(arrowElmt);
-						}
+						arrowElmt.appendChild(document.createTextNode(lib.specialCharacters[arrowChoice]));
+						guideArrowsElmt.appendChild(arrowElmt);
 					}
 				}
+			}
+			// Bottom Symbols
+			switch(panel.sign.otherSymbol) {
+				case "Quebec-Style Exit Marker":
+					const markerElmt = document.createElement("object");
+					markerElmt.className = "markerImg";
+					markerElmt.type = "image/svg+xml";
+					markerElmt.data = "img/other-symbols/QC-Exit.svg";
+					otherSymbolsElmt.appendChild(markerElmt);
+				default:
+					
 			}
 		}
 	};

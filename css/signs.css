@@ -365,7 +365,40 @@
 	width: 3.12rem;
 	height: 2.5rem;
 }
-
+.markerImg {
+	height: 1.5rem;
+	top: 0.25rem;
+	position: relative;
+	z-index: 0;
+}
+.otherSymbols {
+	display: inline-flex;
+	flex-direction: column;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0.1rem;
+	position:relative;
+	margin-bottom: 0.5rem;
+}
+.oSNum { /* Add .left and .right */
+	font-family: "Series EM";
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	text-align: center;
+	top: .25rem;
+    font-size: 1.25em;
+	left: -.3rem;
+	color: black;
+}
+.oSNum.short {
+	letter-spacing: .1rem;
+}
+.oSNum.five {
+	font-family: "Series C";
+	top: .29rem;
+	font-size: 1.2em;
+}
 .routeNumber {
 	font-size: 1.5rem;
 
@@ -406,7 +439,7 @@
 
 .exitTab,
 .action_message {
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 }
 .action_message {
@@ -440,7 +473,7 @@
 	line-height: 0; /* Makes space text (arrow) takes up minimal */
 
 	display: inline-block;
-	margin: -0.5rem 0.05rem 0.05rem 5rem;
+	margin: -0.5rem 0.05rem 0.05rem .5rem;
 	padding: 0 0.1rem 0 0.05rem;
 }
 

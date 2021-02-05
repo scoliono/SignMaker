@@ -94,6 +94,12 @@
 				</select>
 				<input type="number" id="guideArrowLanes" name="guideArrowLanes" min=1 max=6 onBlur="app.readForm();" />
 				<br />
+				<label for="otherSymbol">Other Bottom Symbols:</label>
+				<select id="otherSymbol" onChange="app.readForm();">
+				<input type="text" id="oSNum" name="oSNum" placeholder="Exit Num" onBlur="app.readForm();" />
+				</select>
+				<br />
+				<label for="actionMessage" id="actionMessageLabel">Action Message: </label>
 				<input type="text" id="actionMessage" name="actionMessage" placeholder="Action Message" onBlur="app.readForm();" />
 				<br />
 			</form>

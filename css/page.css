@@ -158,10 +158,13 @@ p {
 	margin: 0;
 }
 
-#actionMessage {
+#signMaker {
+	display: inline-block;
+
+}
+#oSNum {
 	display: none;
 }
-
 .left {
 	text-align: left;
 }
