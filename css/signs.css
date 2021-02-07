@@ -445,7 +445,10 @@
 	color: var(--black) !important;
 }
 
-.exitTab,
+.exitTab {
+	display: flex;
+	align-items: center;
+}
 .action_message {
 	display: inline-flex;
 	align-items: center;
