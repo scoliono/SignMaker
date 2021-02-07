@@ -451,6 +451,10 @@ const app = (function() {
 			actionMessageElmt.className = `actionMessage`;
 			guideArrowsElmt.appendChild(actionMessageElmt);
 
+			const arrowContElmt = document.createElement("div");
+			arrowContElmt.className = `arrowContainer`;
+			guideArrowsElmt.appendChild(arrowContElmt);
+
 			panelContainerElmt.appendChild(panelElmt);
 
 			// Exit tab
@@ -646,7 +650,10 @@ const app = (function() {
 				signElmt.style.borderBottomWidth = "0";
 				guideArrowsElmt.style.display = "block";
 				guideArrowsElmt.style.visibility = "visible";
-				
+				if (panel.sign.guideArrowLanes %2 == 0 && panel.sign.guideArrow != "Exit Only" && panel.sign.actionMessage != "") {
+					arrowContElmt.appendChild(actionMessageElmt);
+					arrowContElmt.className += ` centerText`;
+				}
 				if ("Exit Only" == panel.sign.guideArrow) {
 					const exitOnlyArrowElmt = function() {
 						const exitOnlyArrowElmt = document.createElement("span");
@@ -671,34 +678,34 @@ const app = (function() {
 								const textExitOnlySpanElmt = document.createElement("span");
 								textExitOnlySpanElmt.appendChild(document.createTextNode("EXIT ONLY"));
 								textExitOnlySpanElmt.className = "exitOnlyText";
-								guideArrowsElmt.appendChild(textExitOnlySpanElmt);
-								guideArrowsElmt.appendChild(exitOnlyArrowElmt());
+								arrowContElmt.appendChild(textExitOnlySpanElmt);
+								arrowContElmt.appendChild(exitOnlyArrowElmt());
 							} else {
-								guideArrowsElmt.appendChild(downArrowElmt());
+								arrowContElmt.appendChild(downArrowElmt());
 							}
 						} else { // Odds
 							if (arrowIndex == Math.floor(length/2)) {
 								const textExitSpanElmt = document.createElement("span");
 								textExitSpanElmt.appendChild(document.createTextNode("EXIT"));
 								textExitSpanElmt.className = "exitOnlyText";
-								guideArrowsElmt.appendChild(textExitSpanElmt);
-								guideArrowsElmt.appendChild(exitOnlyArrowElmt());
+								arrowContElmt.appendChild(textExitSpanElmt);
+								arrowContElmt.appendChild(exitOnlyArrowElmt());
 								const textOnlySpanElmt = document.createElement("span");
 								textOnlySpanElmt.appendChild(document.createTextNode("ONLY"));
 								textOnlySpanElmt.className = "exitOnlyText";
-								guideArrowsElmt.appendChild(textOnlySpanElmt);
+								arrowContElmt.appendChild(textOnlySpanElmt);
 							} else if (arrowIndex == Math.ceil(length/2)) {
-								guideArrowsElmt.appendChild(exitOnlyArrowElmt());
+								arrowContElmt.appendChild(exitOnlyArrowElmt());
 							} else {
-								guideArrowsElmt.appendChild(downArrowElmt());
+								arrowContElmt.appendChild(downArrowElmt());
 							}
 						}
 					}
 				} else {
 					if (panel.sign.guideArrow == "Down Arrow" || panel.sign.guideArrow == "Up Arrow") {
-						guideArrowsElmt.style.fontFamily = "Arrows Two";
+						arrowContElmt.style.fontFamily = "Arrows Two";
 					} else {
-						guideArrowsElmt.style.fontFamily = "Arrows One";
+						arrowContElmt.style.fontFamily = "Arrows One";
 					}
 					for (let arrowIndex = 0, length = panel.sign.guideArrowLanes; arrowIndex < length; arrowIndex++) {
 						const arrowElmt = document.createElement("span");
@@ -708,7 +715,12 @@ const app = (function() {
 							arrowElmt.className += " rotate180";
 						}
 						arrowElmt.appendChild(document.createTextNode(lib.specialCharacters[arrowChoice]));
-						guideArrowsElmt.appendChild(arrowElmt);
+						if (arrowIndex %2 == 0) {
+							arrowContElmt.insertBefore(arrowElmt, arrowContElmt.childNodes[0]);
+						}
+						else {
+							arrowContElmt.appendChild(arrowElmt);
+						}
 					}
 				}
 			}
