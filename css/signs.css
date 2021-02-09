@@ -202,7 +202,8 @@
 	min-height: 2.25rem;
 	padding: 0 0.5rem 0rem 0.5rem;
 }
-.exitTab.narrow {
+.exitTab.narrow,
+.exitTab.edge {
 		width: -moz-max-content;
 		width: -webkit-max-content;
 		width: intrinsic;
@@ -214,7 +215,14 @@
 	margin-right: 0.75rem; /* Margin keeps the edge of the tab from going above the */
 	margin-left: 0.75rem; /* curved corners of the panel below */
 }
-.narrow.center {
+.exitTabContainer.edge.right {
+	margin-right: 0rem;
+}
+.exitTabContainer.edge.left {
+	margin-left: 0rem;
+}
+.narrow.center,
+.edge.center {
 	margin: auto;
 }
 .exitTabContainer,
@@ -222,13 +230,16 @@
 	z-index: 2;	
 }
 .signContainer,
-.exitTabContainer.narrow {
+.exitTabContainer.narrow,
+.exitTabContainer.edge {
 	width: max-content;
 }
-.exitTabContainer.narrow.left {
+.exitTabContainer.narrow.left,
+.exitTabContainer.edge.left {
 	margin-right: auto;
 }
-.exitTabContainer.narrow.right {
+.exitTabContainer.narrow.right,
+.exitTabContainer.edge.right {
 	margin-left: auto;
 }
 .exitTab.wide.left,
@@ -250,6 +261,12 @@
 }
 .sign.exit-full.tabVisible {
 	border-radius: 0 0 0.75rem 0.75rem;
+}
+.sign.exit-edge.exit-right.tabVisible {
+	border-radius: 0.75rem 0 0.75rem 0.75rem;
+}
+.sign.exit-edge.exit-left.tabVisible {
+	border-radius: 0 0.75rem 0.75rem 0.75rem;
 }
 .sign {
 	border-radius: 0.75rem;

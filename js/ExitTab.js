@@ -21,4 +21,4 @@ class ExitTab {
 }
 
 ExitTab.prototype.positions = ["Left", "Center", "Right"];
-ExitTab.prototype.widths = ["Narrow", "Wide", "Full"];
+ExitTab.prototype.widths = ["Narrow", "Wide", "Full", "Edge"];

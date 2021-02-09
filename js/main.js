@@ -405,10 +405,10 @@ const app = (function() {
 			exitTabCont.appendChild(exitTabElmt);
 
 			const signCont = document.createElement("div");
-			signCont.className = `signContainer exit-${panel.exitTab.width.toLowerCase()}`;
+			signCont.className = `signContainer exit-${panel.exitTab.width.toLowerCase()} exit-${panel.exitTab.position.toLowerCase()}`;
 			panelElmt.appendChild(signCont);
 			const signElmt = document.createElement("div");
-			signElmt.className = `sign exit-${panel.exitTab.width.toLowerCase()}`;
+			signElmt.className = `sign exit-${panel.exitTab.width.toLowerCase()} exit-${panel.exitTab.position.toLowerCase()}`;
 			signCont.appendChild(signElmt);
 
 			const sideLeftArrowElmt = document.createElement("div");
