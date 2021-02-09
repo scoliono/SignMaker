@@ -627,13 +627,23 @@ const app = (function() {
 				actionMessageElmt.style.display = "inline-flex";
 				actionMessageElmt.className = `actionMessage action_message`;
 				const txtArr = panel.sign.actionMessage.split(/(\d+\S*)/);
-				actionMessageElmt.appendChild(document.createTextNode(txtArr[0]));
+				const txtFrac = txtArr[0].split(/([\u00BC-\u00BE]+\S*)/);
+				console.log(txtArr);
+				console.log(txtFrac);
+				actionMessageElmt.appendChild(document.createTextNode(txtFrac[0]));
 				if (txtArr.length > 1) {
 					const spanElmt = document.createElement("span");
 					spanElmt.className = "numeral";
 					spanElmt.appendChild(document.createTextNode(txtArr[1]));
 					actionMessageElmt.appendChild(spanElmt);
 					actionMessageElmt.appendChild(document.createTextNode(txtArr.slice(2).join("")));
+				}
+				if (txtFrac.length > 1) {
+					const spanFractionElmt = document.createElement("span");
+					spanFractionElmt.className = "fraction";
+					spanFractionElmt.appendChild(document.createTextNode(txtFrac[1]));
+					actionMessageElmt.appendChild(spanFractionElmt);
+					actionMessageElmt.appendChild(document.createTextNode(txtFrac.slice(2).join("")));
 				}
 			}
 			else {

@@ -511,13 +511,18 @@
 .numeral {
 	font-size: 1.5rem;
 }
-.numeral:first-child {
+.fraction {
+	top: .22rem;
+	position: relative;
+	padding-bottom: .65rem;
+}
+.numeral:first-child, .fraction:first-child {
 	padding-right: 0.5rem;
 }
-.numeral:last-child {
+.numeral:last-child, .fraction:last-child {
 	padding-left: 0.5rem;
 }
-.centerText .numeral:last-child {
+.centerText .numeral:last-child, .centerText .fraction:last-child {
 	padding-left: 0rem;
 }
 .centerText .rotate180 {
